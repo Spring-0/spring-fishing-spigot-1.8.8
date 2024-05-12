@@ -1,0 +1,158 @@
+# --------------------------------------------------------------------
+# Permissions
+#
+# springfishing.command.help > Allows player to use /fishing help
+# springfishing.command.version > Allows player to use /fishing ver
+# springfishing.command.start > Allows player to use /fishing event start (Admin command)
+# springfishing.command.stop > Allows player to use /fishing event stop (Admin command)
+# springfishing.command.reload > Allows player to use /fishing reload (Admin command)
+# springfishing.command.forcestart > Allows player to use /fishing event forcestart (Admin command)
+#
+# --------------------------------------------------------------------
+
+# ---------------------
+# Event Configuration
+# ---------------------
+fishing-event:
+  event-interval: 30 # Value in minutes
+
+  rewards:
+    # Rewards given to the first place winner
+    first-place-rewards:
+      - "eco give %player% 1000000"
+      - "give %player% iron_block 10"
+
+    # Rewards given to the second place winner
+    second-place-rewards:
+      - "eco give %player% 1000"
+      - "give %player% iron_block 3"
+
+    # Rewards given to the third place winner
+    third-place-rewards:
+      - "give %player% gold_block 1"
+
+    # Rewards given to all participants
+    participation-rewards:
+      - "give %player% dirt 5"
+
+# ---------------------
+# Fishing Configuration
+# ---------------------
+
+# Fishing Rod Item Customization
+
+# Default Fishing Rod Customization
+fishing-rod-item:
+  display-name: "&e&lSpring Fishing Rod"
+  glow: true
+  lore:
+    - ''
+    - '&7----------------------'
+    - '&eLevel: &6%current_level%'
+    - '&eFish Caught: &6%fish_caught%'
+    - '&eNext Level: &6%fish_left%'
+    - '&7----------------------'
+    - ''
+    - '&eReady to reel in some excitement?'
+    - '&6/warp fish &eand let the adventure begin!'
+
+# Maxed Fishing Rod Customization
+maxed-fishing-rod-item:
+  display-name: "&e&lExpert's Fishing Rod"
+  glow: true
+  lore:
+    - '&7-------------------'
+    - '&6Max Level Achieved'
+    - '&7-------------------'
+    - '&eTotal Fish Caught: &6%fish_caught%'
+    - '&7-------------------'
+    - ''
+    - '&eReady to conquer the seas?'
+    - '&6/warp fish &eand let the'
+    - '&elegendary catches begin!'
+
+# Fishing Upgrade Configuration
+fishing-rod-upgrades:
+  base-fish-frequency: 15 # Every x seconds a fish will spawn without factoring in any upgrades.
+  levels:
+    1:
+      fish-required-to-upgrade: 2
+      # Allows players to keep their fishing rod on death.
+      life-bound:
+        enabled: false
+        success-chance: 0.2 # 20% of allowing the player to keep their fishing rod on death
+
+      # Gives players the chance of doubling their rewards at the risk of loosing it all.
+      double-or-nothing:
+        enabled: false
+        double-rate: 0.5 # 0.5 -> 50%
+        nothing-rate: 0.5
+
+      # Temporarily increase fish spawn rates.
+      fish-frenzy:
+        enabled: false
+        activation-rate: 0.05 # 5% chance of activating fish frenzy every time a fish is caught
+        duration: 10 # How long the fishing frenzy will last (in seconds)
+
+    2:
+      fish-required-to-upgrade: 2 # The number of fish required to upgrade to this level.
+
+      life-bound:
+        enabled: false
+        success-chance: 0.5
+
+      double-or-nothing:
+        enabled: false
+        double-rate: 0.5
+        nothing-rate: 0.5
+
+      fish-frenzy:
+        enabled: false
+        activation-rate: 0.05
+        duration: 10
+
+    3:
+      fish-required-to-upgrade: 3 # The number of fish required to upgrade to this level.
+
+      life-bound:
+        enabled: false
+        success-chance: 0.5
+
+      double-or-nothing:
+        enabled: false
+        double-rate: 0.5
+        nothing-rate: 0.5
+
+      fish-frenzy:
+        enabled: false
+        activation-rate: 0.05
+        duration: 10
+
+
+# TODO:
+# Fishing Item Configuration
+
+
+# ---------------------
+# Lang configuration
+# ---------------------
+
+# Message Prefix
+message-prefix: "&e[SpringFishing] &a"
+# Message to be displayed when an invalid number of arguments are passed in.
+invalid-argument-amount-message: "Invalid number of arguments."
+# Message to be displayed when an invalid argument is passed in.
+invalid-argument-message: "Unknown argument."
+# Broadcast Message to be displayed when a fishing event has started
+fishing-event-started-message: "Fishing event has started."
+# Broadcast Message to be displayed when a fishing event ends.
+fishing-event-ended-message: "Fishing event has ended.\nWinner: Spring93"
+# Message to be displayed when an admin attempts starting a fishing event that is already running.
+fishing-event-already-running: "Fishing event is already active."
+# Message to be displayed when an admin attempts to stop a fishing event that is not running.
+fishing-event-not-running: "There is no active fishing event."
+# Message to be broadcast when a player has reached maximum fishing level
+player-maxed-fishing-rod-broadcast: "Bravo! %player% has reached max fishing level!"
+
+# Message to be displayed to the player when they do not have permission.
+no-permission-message: "&cYou do not have permission to execute this command."

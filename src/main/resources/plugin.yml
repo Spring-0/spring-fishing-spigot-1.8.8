@@ -1,0 +1,7 @@
+name: SpringFishing
+version: '${project.version}'
+main: dev.spring93.springfishing.SpringFishing
+load: STARTUP
+commands:
+  fishing:
+    description: SpringFishing commands.
