@@ -1,84 +1,94 @@
-package dev.spring93.springfishing.utils;
+package dev.spring93.springfishing.services;
 
 import dev.spring93.springfishing.SpringFishing;
+import dev.spring93.springfishing.utils.MessageUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
-public class ConfigManager {
+public class ConfigService {
 
-    private static ConfigManager instance;
+    private static ConfigService instance;
     private static FileConfiguration config;
 
-    public ConfigManager() {
+    public ConfigService() {
         SpringFishing plugin = JavaPlugin.getPlugin(SpringFishing.class);
         plugin.saveDefaultConfig();
         this.config = plugin.getConfig();
     }
 
-    public static ConfigManager getInstance() {
+    public static ConfigService getInstance() {
         if(instance == null) {
-            instance = new ConfigManager();
+            instance = new ConfigService();
         }
         return instance;
     }
 
     public String getInvalidArgsNumberMessage() {
-        return getConfigString("invalid-argument-amount-message");
+        return getColorCodedString("invalid-argument-amount-message");
     }
 
     public String getInvalidArgMessage() {
-        return getConfigString("invalid-argument-message");
+        return getColorCodedString("invalid-argument-message");
     }
 
     public String getNoPermissionMessage() {
-        return getConfigString("no-permission-message");
+        return getColorCodedString("no-permission-message");
     }
 
     public String getMessagePrefix() {
-        return getConfigString("message-prefix");
+        return getColorCodedString("message-prefix");
     }
 
-    private String getConfigString(String path) {
+    public String getColorCodedString(String path) {
         return ChatColor.translateAlternateColorCodes('&', config.getString(path));
+    }
+
+    public String getColorCodedString(ConfigurationSection configSection, String path) {
+        return ChatColor.translateAlternateColorCodes('&', configSection.getString(path));
     }
 
     public void reloadConfig(CommandSender sender) {
         SpringFishing plugin = SpringFishing.getInstance();
         plugin.reloadConfig();
         this.config = plugin.getConfig();
-        MessageManager.sendMessage(sender, "has been reloaded.");
+        MessageUtils.sendMessage(sender, "has been reloaded.");
     }
 
     public String getFishingRodDisplayName() {
-        return getConfigString("fishing-rod-item.display-name");
+        return getColorCodedString("fishing-rod-item.display-name");
     }
 
     public String getMaxedFishingRodDisplayName() {
-        return getConfigString("maxed-fishing-rod-item.display-name");
+        return getColorCodedString("maxed-fishing-rod-item.display-name");
+    }
+
+    public List<String> getColoredStringList(ConfigurationSection configSection, String path) {
+        List<String> lore = configSection.getStringList(path);
+        for (int i = 0; i < lore.size(); i++) {
+            String line = lore.get(i);
+            line = ChatColor.translateAlternateColorCodes('&', line);
+            lore.set(i, line);
+        }
+        return lore;
+    }
+
+    public List<String> getColoredStringList(String path) {
+        return getColoredStringList(config, path);
     }
 
     public List<String> getFishingRodLore() {
-        List<String> lore = config.getStringList("fishing-rod-item.lore");
-        for (int i = 0; i < lore.size(); i++) {
-            String line = lore.get(i);
-            line = ChatColor.translateAlternateColorCodes('&', line);
-            lore.set(i, line);
-        }
-        return lore;
+        return getColoredStringList("fishing-rod-item.lore");
     }
 
     public List<String> getMaxedFishingRodLore() {
-        List<String> lore = config.getStringList("maxed-fishing-rod-item.lore");
-        for (int i = 0; i < lore.size(); i++) {
-            String line = lore.get(i);
-            line = ChatColor.translateAlternateColorCodes('&', line);
-            lore.set(i, line);
-        }
-        return lore;
+        return getColoredStringList("maxed-fishing-rod-item.lore");
     }
 
     public boolean isFishingRodGlow() {
@@ -131,6 +141,31 @@ public class ConfigManager {
     }
 
     public String getMaxedRodBroadcastMessage() {
-        return config.getString("player-maxed-fishing-rod-broadcast");
+        return getColorCodedString("player-maxed-fishing-rod-broadcast");
+    }
+
+    public boolean isVanillaExpEnabled() {
+        return config.getBoolean("disable-vanilla-exp", true);
+    }
+
+    public List<ConfigurationSection> getFishingRewardsConfigList() {
+        List<ConfigurationSection> rewardsSections = new ArrayList<>();
+        ConfigurationSection fishingRewardsSection = config.getConfigurationSection("fishing-rewards.rewards");
+        if(fishingRewardsSection != null) {
+            Set<String> rewards = fishingRewardsSection.getKeys(false);
+            if(rewards != null) {
+                for(String rewardKey : rewards) {
+                    ConfigurationSection rewardSection = fishingRewardsSection.getConfigurationSection(rewardKey);
+                    if(rewardSection != null) {
+                        rewardsSections.add(rewardSection);
+                    }
+                }
+            }
+        }
+        return rewardsSections;
+    }
+
+    public String getRodLevelUpMessage() {
+        return getColorCodedString("fishing-rod-level-up");
     }
 }
