@@ -1,14 +1,15 @@
 package dev.spring93.springfishing.utils;
 
 import dev.spring93.springfishing.SpringFishing;
+import dev.spring93.springfishing.services.ConfigService;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
 
-public class MessageManager {
+public class MessageUtils {
 
-    private static ConfigManager config = ConfigManager.getInstance();
+    private static ConfigService config = ConfigService.getInstance();
 
     public static void broadcastMessage(String msg) {
         Bukkit.broadcastMessage(config.getMessagePrefix() + msg);
