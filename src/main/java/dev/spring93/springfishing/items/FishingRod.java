@@ -1,18 +1,18 @@
 package dev.spring93.springfishing.items;
 
 import de.tr7zw.nbtapi.NBTItem;
-import dev.spring93.springfishing.utils.ConfigManager;
+import dev.spring93.springfishing.services.ConfigService;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.List;
 
 public class FishingRod {
-    private ConfigManager config;
+    private ConfigService config;
     private NBTItem nbti;
 
     public FishingRod(NBTItem nbti) {
         this.nbti = nbti;
-        config = ConfigManager.getInstance();
+        config = ConfigService.getInstance();
     }
 
     public NBTItem getNBTItem() {

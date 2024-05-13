@@ -1,19 +1,19 @@
 package dev.spring93.springfishing.commands;
 
 import dev.spring93.springfishing.services.FishingRodService;
-import dev.spring93.springfishing.utils.ConfigManager;
-import dev.spring93.springfishing.utils.MessageManager;
+import dev.spring93.springfishing.services.ConfigService;
+import dev.spring93.springfishing.utils.MessageUtils;
 import org.bukkit.command.CommandSender;
 
 public class SpringFishingCommands extends BaseCommand {
 
     private FishingRodService fishingRodService;
-    private ConfigManager config;
+    private ConfigService config;
 
     public SpringFishingCommands() {
         super("fishing");
         fishingRodService = new FishingRodService();
-        config = ConfigManager.getInstance();
+        config = ConfigService.getInstance();
     }
 
     @Override
@@ -23,31 +23,31 @@ public class SpringFishingCommands extends BaseCommand {
         switch(arg1) {
             case "give":
                 if(!sender.hasPermission("springfishing.command.give")) {
-                    MessageManager.sendMessage(sender, config.getNoPermissionMessage());
+                    MessageUtils.sendMessage(sender, config.getNoPermissionMessage());
                     break;
                 }
 
                 if(args.length == 2) {
                     String targetPlayer = args[1].toLowerCase().trim();
                     fishingRodService.givePlayerNewFishingRod(sender, targetPlayer);
-                } else MessageManager.sendMessage(sender, ConfigManager.getInstance().getInvalidArgsNumberMessage());
+                } else MessageUtils.sendMessage(sender, ConfigService.getInstance().getInvalidArgsNumberMessage());
                 break;
             case "reload":
                 if(!sender.hasPermission("springfishing.command.reload")) {
-                    MessageManager.sendMessage(sender, config.getNoPermissionMessage());
+                    MessageUtils.sendMessage(sender, config.getNoPermissionMessage());
                     break;
                 }
                 config.reloadConfig(sender);
                 break;
             case "ver":
                 if(!sender.hasPermission("springfishing.command.version")) {
-                    MessageManager.sendMessage(sender, config.getNoPermissionMessage());
+                    MessageUtils.sendMessage(sender, config.getNoPermissionMessage());
                     break;
                 }
-                MessageManager.sendMessage(sender, MessageManager.getVersionMessage());
+                MessageUtils.sendMessage(sender, MessageUtils.getVersionMessage());
                 break;
             default:
-                sender.sendMessage(MessageManager.getHelpMenu());
+                sender.sendMessage(MessageUtils.getHelpMenu());
                 break;
         }
         return false;

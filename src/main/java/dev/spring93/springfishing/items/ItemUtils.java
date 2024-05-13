@@ -1,7 +1,7 @@
 package dev.spring93.springfishing.items;
 
 import de.tr7zw.nbtapi.NBTItem;
-import dev.spring93.springfishing.utils.ConfigManager;
+import dev.spring93.springfishing.services.ConfigService;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
@@ -13,7 +13,7 @@ import java.util.List;
 public class ItemUtils {
 
     public static ItemStack createFishingRodItem() {
-        ConfigManager config = ConfigManager.getInstance();
+        ConfigService config = ConfigService.getInstance();
 
         String displayName = config.getFishingRodDisplayName();
         List<String> lore = config.getFishingRodLore();
