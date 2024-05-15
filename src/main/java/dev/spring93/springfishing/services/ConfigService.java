@@ -145,7 +145,7 @@ public class ConfigService {
     }
 
     public boolean isVanillaExpEnabled() {
-        return config.getBoolean("disable-vanilla-exp", true);
+        return !config.getBoolean("fishing-rewards.disable-vanilla-exp");
     }
 
     public List<ConfigurationSection> getFishingRewardsConfigList() {

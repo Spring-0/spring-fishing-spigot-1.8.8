@@ -39,9 +39,6 @@ fishing-event:
 # Fishing Configuration
 # ---------------------
 
-# Toggle the vanilla exp gain when fishing
-disable-vanilla-exp: true
-
 # Fishing Rod Item Customization
 
 # Default Fishing Rod Customization
@@ -134,6 +131,9 @@ fishing-rod-upgrades:
 
 # Fishing Item Configuration
 fishing-rewards:
+  # Toggle the vanilla exp gain when fishing
+  disable-vanilla-exp: true
+
   rewards:
     fisherman_diamond:
       display:
