@@ -137,20 +137,19 @@ fishing-rewards:
   rewards:
     fisherman_diamond:
       display:
-        display-name: "Fisherman's Diamond"
+        display-name: "&6Fisherman's Diamond"
         material-type: 'DIAMOND'
         glow: true
         lore:
           - "&7A diamond from the ocean's depths, secrets within."
           - "&7Unearthed by a legendary fisherman."
           - "&7A testament to perseverance."
-      amount: 1
-      sell-price: 20_000 # To disable this set it to -1
-      min-required-rod-level: 2 # The minimum level required for a hoe to obtain this item.
+      amount: 1 # Amount of the item to give to the player per catch.
+      sell-price: 20_000
+      min-required-rod-level: 2 # The minimum level required for a fishing rod to obtain this item.
       sell-price-scale-factor-per-rod-level: 0.10
       chance-scale-factor-per-rod-level: 0.5
-      base-chance: 0.3 # 30% chance
-
+      base-chance: 0.3 # Percentage chance of getting this item from fishing
 
     solid_gold:
       display:
@@ -162,17 +161,16 @@ fishing-rewards:
           - "&7Tales of ancient rivers flowing with molten gold."
           - "&7Riches in a humble catch."
       amount: 2
-      sell-price: 5000
+      sell-price: 5_000
       min-required-rod-level: 2 # The minimum level required for a fishing rod to obtain this item.
       sell-price-scale-factor-per-rod-level: 0.10
       chance-scale-factor-per-rod-level: 0.5
-      base-chance: 0.3 # 30% chance
+      base-chance: 0.3 # Percentage chance of getting this item from fishing
 
-
-
+    # Command Example
     emerald_block:
         command: 'give %player% EMERALD_BLOCK 5'
-        base-chance: 0.70 # 10% of executing this command
+        base-chance: 0.50 # Percentage chance of getting this reward from fishing
         min-required-rod-level: 1
         chance-scale-factor-per-rod-level: 0.5
 
@@ -198,7 +196,9 @@ fishing-event-not-running: "There is no active fishing event."
 # Message to be broadcast when a player has reached maximum fishing level
 player-maxed-fishing-rod-broadcast: "Bravo! %player% has reached max fishing level!"
 # Message displayed to the user when their fishing rod gets upgraded
-fishing-rod-level-up: "You have leveled up your fishing rod to level: %level%. Keep it up!"
+fishing-rod-level-up: "You have leveled up your fishing rod to level %level%. Keep it up!"
+# Message to be displayed when a player has successfully sold their fish.
+fish-sold-message: "You have sold %amount_sold% items, and gained %amount% from your fishing adventure!"
 
 # Message to be displayed to the player when they do not have permission.
 no-permission-message: "&cYou do not have permission to execute this command."

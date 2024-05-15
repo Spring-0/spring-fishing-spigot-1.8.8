@@ -79,6 +79,10 @@ public class ConfigService {
         return lore;
     }
 
+    public double getSellPriceFromRewardKey(String key) {
+        return config.getDouble("fishing-rewards.rewards." + key + ".sell-price");
+    }
+
     public List<String> getColoredStringList(String path) {
         return getColoredStringList(config, path);
     }
@@ -168,4 +172,5 @@ public class ConfigService {
     public String getRodLevelUpMessage() {
         return getColorCodedString("fishing-rod-level-up");
     }
+    public String getFishSoldMessage() { return getColorCodedString("fish-sold-message"); }
 }

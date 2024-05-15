@@ -5,6 +5,7 @@ import dev.spring93.springfishing.services.ConfigService;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 
 public class MessageUtils {
@@ -17,6 +18,10 @@ public class MessageUtils {
 
     public static void sendMessage(CommandSender sender, String msg) {
         sender.sendMessage(config.getMessagePrefix() + msg);
+    }
+
+    public static void sendMessage(Player player, String msg) {
+        player.sendMessage(config.getMessagePrefix() + msg);
     }
 
     public static String getHelpMenu() {

@@ -1,5 +1,6 @@
 package dev.spring93.springfishing.items;
 
+import de.tr7zw.nbtapi.NBTItem;
 import dev.spring93.springfishing.services.ConfigService;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
@@ -59,7 +60,11 @@ public class FishingReward {
         }
 
         newItem.setItemMeta(meta);
-        return newItem;
+
+        NBTItem nbtItem = new NBTItem(newItem);
+        nbtItem.setString("reward-key", itemStackConfigSection.getName());
+
+        return nbtItem.getItem();
     }
 
     public ItemStack getItemStack() {
