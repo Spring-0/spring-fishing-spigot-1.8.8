@@ -68,6 +68,10 @@
           <id>jitpack.io</id>
           <url>https://jitpack.io</url>
       </repository>
+      <repository>
+          <id>central</id>
+          <url>https://repo1.maven.org/maven2/</url>
+      </repository>
   </repositories>
 
   <dependencies>
@@ -88,6 +92,11 @@
           <artifactId>VaultAPI</artifactId>
           <version>1.7</version>
           <scope>provided</scope>
+      </dependency>
+      <dependency>
+          <groupId>com.github.azbh111</groupId>
+          <artifactId>craftbukkit-1.8.8</artifactId>
+          <version>R</version>
       </dependency>
   </dependencies>
 </project>

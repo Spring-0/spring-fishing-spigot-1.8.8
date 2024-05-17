@@ -101,6 +101,10 @@ public class ConfigService {
 
     public int getBaseFishFrequency() {
         return config.getInt("fishing-rod-upgrades.base-fish-frequency");
+    public int getBaseBiteTime() {
+        return config.getInt("fishing-rod-upgrades.base-bite-time");
+    }
+    public int getBaseTimeReduction() {return config.getInt("fishing-rod-upgrades.bite-time-reduction-per-level"); }
     }
 
     public int getFishRequiredToUpgrade(String level) {

@@ -7,6 +7,8 @@
 # springfishing.command.stop > Allows player to use /fishing event stop (Admin command)
 # springfishing.command.reload > Allows player to use /fishing reload (Admin command)
 # springfishing.command.forcestart > Allows player to use /fishing event forcestart (Admin command)
+# springfishing.command.sellfish > Allows player to sell their own fish using /fishing sellfish
+# springfishing.command.sellfish.other > Allows player/console to sell other player's fish.
 #
 # --------------------------------------------------------------------
 
@@ -73,7 +75,9 @@ maxed-fishing-rod-item:
 
 # Fishing Upgrade Configuration
 fishing-rod-upgrades:
-  base-fish-frequency: 15 # Every x seconds a fish will spawn without factoring in any upgrades.
+  base-bite-time: 10 # The base time in seconds it takes to catch a fish
+  bite-time-reduction-per-level: 1 # Reduction in seconds per each harvester hoe level.
+
   levels:
     1:
       fish-required-to-upgrade: 2
