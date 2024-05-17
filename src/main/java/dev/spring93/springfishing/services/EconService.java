@@ -38,7 +38,11 @@ public class EconService {
             }
         }
 
-        if(totalSellAmount < 1) return;
+        if(totalSellAmount < 1) {
+            MessageUtils.sendMessage(player, config.getNoFishToSellMessage());
+            return;
+        }
+
         if(econ.depositPlayer(player, totalSellAmount).transactionSuccess()) {
             Bukkit.getLogger().info(
                     String.format("Player %s sold %d fishing items for %f", player.getName(), itemsSold, totalSellAmount));

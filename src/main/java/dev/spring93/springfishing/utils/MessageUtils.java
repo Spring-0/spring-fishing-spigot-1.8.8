@@ -29,7 +29,8 @@ public class MessageUtils {
                 "\n" + ChatColor.GREEN + "/fishing help " + ChatColor.YELLOW + ": displays this message\n" +
                 ChatColor.GREEN + "/fishing give [player] " + ChatColor.YELLOW + ": gives the specified player a fishing rod.\n" +
                 ChatColor.GREEN + "/fishing ver " + ChatColor.YELLOW + ": displays plugin information\n" +
-                ChatColor.GREEN + "/fishing reload " + ChatColor.YELLOW + ": reloads plugin configuration\n";
+                ChatColor.GREEN + "/fishing reload " + ChatColor.YELLOW + ": reloads plugin configuration\n" +
+                ChatColor.GREEN + "/fishing sellfish <player> " + ChatColor.YELLOW + ": sells fish for yourself or others\n";
     }
 
     public static String getVersionMessage() {

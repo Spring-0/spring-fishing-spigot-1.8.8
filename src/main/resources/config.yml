@@ -203,6 +203,7 @@ player-maxed-fishing-rod-broadcast: "Bravo! %player% has reached max fishing lev
 fishing-rod-level-up: "You have leveled up your fishing rod to level %level%. Keep it up!"
 # Message to be displayed when a player has successfully sold their fish.
 fish-sold-message: "You have sold %amount_sold% items, and gained %amount% from your fishing adventure!"
+no-fish-to-sell-message: "You have no items to sell."
 
 # Message to be displayed to the player when they do not have permission.
 no-permission-message: "&cYou do not have permission to execute this command."
