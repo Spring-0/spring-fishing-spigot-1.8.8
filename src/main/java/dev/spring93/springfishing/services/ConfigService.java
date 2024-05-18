@@ -141,6 +141,18 @@ public class ConfigService {
         return config.getInt("fishing-rod-upgrades.levels." + level + ".enchants.fish-frenzy.duration");
     }
 
+    public int getFishFrenzyBiteTime(int level) {
+        return config.getInt("fishing-rod-upgrades.levels." + level + ".enchants.fish-frenzy.bite-time");
+    }
+
+    public String getFrenzyActivatedMessage(int time) {
+        return getColorCodedString("fishing-frenzy-activated-message").replace("%time%", String.valueOf(time));
+    }
+
+    public String getFrenzyEndedMessage() {
+        return getColorCodedString("fishing-frenzy-disabled-message");
+    }
+
     public boolean isLevelExists(int level) {
         return config.contains("fishing-rod-upgrades.levels." + level);
     }
@@ -170,8 +182,8 @@ public class ConfigService {
         return rewardsSections;
     }
 
-    public String getRodLevelUpMessage() {
-        return getColorCodedString("fishing-rod-level-up");
+    public String getRodLevelUpMessage(int level) {
+        return getColorCodedString("fishing-rod-level-up").replace("%level%", String.valueOf(level));
     }
     public String getFishSoldMessage() { return getColorCodedString("fish-sold-message"); }
     public String getFishDoubledMessage() { return getColorCodedString("double-fish-message"); }

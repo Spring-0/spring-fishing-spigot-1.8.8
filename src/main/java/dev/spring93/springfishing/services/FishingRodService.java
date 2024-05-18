@@ -8,8 +8,12 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.HashMap;
+import java.util.UUID;
+
 public class FishingRodService {
     private ConfigService config;
+    private HashMap<UUID, Boolean> frenzyMap = new HashMap<>();
 
     public FishingRodService() {
         config = ConfigService.getInstance();
@@ -39,4 +43,13 @@ public class FishingRodService {
         NBTItem nbtItem = new NBTItem(itemStack);
         return nbtItem.hasTag("isFishingRod");
     }
+
+    public boolean isFrenzyActive(UUID playerId) {
+        return frenzyMap.getOrDefault(playerId, false);
+    }
+
+    public void setFrenzyActive(UUID playerId, boolean active) {
+        frenzyMap.put(playerId, active);
+    }
+
 }

@@ -206,6 +206,8 @@ fish-sold-message: "You have sold %amount_sold% items, and gained %amount% from 
 no-fish-to-sell-message: "You have no items to sell."
 double-fish-message: "Your double or nothing enchant has succeeded."
 nothing-fish-message: "Your double or nothing enchant has failed."
+fishing-frenzy-activated-message: "Fishing frenzy has been activated for %time% seconds"
+fishing-frenzy-disabled-message: "Fishing frenzy has ended."
 
 # Message to be displayed to the player when they do not have permission.
 no-permission-message: "&cYou do not have permission to execute this command."
