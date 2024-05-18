@@ -94,7 +94,6 @@ public class FishingRod {
     }
 
     public boolean isMaxed() {
-        return !config.isLevelExists(String.valueOf(getLevel() + 1));
+        return !config.isLevelExists(getLevel() + 1);
     }
-
 }

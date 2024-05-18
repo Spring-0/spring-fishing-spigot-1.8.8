@@ -3,7 +3,11 @@ package dev.spring93.springfishing.services;
 import dev.spring93.springfishing.items.FishingReward;
 import dev.spring93.springfishing.items.FishingRod;
 import dev.spring93.springfishing.utils.MessageUtils;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.entity.Item;
+import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerFishEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,14 +17,16 @@ public class FishingRewardService {
     private FishingRod rod;
     private List<FishingReward> rewards;
     private final Random random;
+    private final ConfigService config;
 
     public FishingRewardService() {
         this.random = new Random();
         this.rewards = new ArrayList<>();
-        loadRewardsFromConfig(ConfigService.getInstance().getFishingRewardsConfigList());
+        this.config = ConfigService.getInstance();
     }
 
-    private void loadRewardsFromConfig(List<ConfigurationSection> rewardsConfig) {
+    public void loadRewardsFromConfig() {
+        List<ConfigurationSection> rewardsConfig = config.getFishingRewardsConfigList();
         if(rewardsConfig != null) {
             for(ConfigurationSection rewardConfig : rewardsConfig) {
                 FishingReward fishingReward = new FishingReward(rewardConfig);
@@ -43,6 +49,16 @@ public class FishingRewardService {
             }
         }
         return null;
+    }
+
+    public void giveReward(PlayerFishEvent event, Player player) {
+        FishingReward reward = getRandomReward();
+        if(!reward.isCommand()) {
+            ((Item) event.getCaught()).setItemStack(reward.getItemStack());
+        } else {
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), reward.getCommand().replace("%player%", player.getName()));
+            event.getCaught().remove();
+        }
     }
 
     public void setRod(FishingRod rod) { this.rod = rod; }

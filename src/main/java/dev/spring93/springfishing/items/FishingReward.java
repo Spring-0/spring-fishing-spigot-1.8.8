@@ -31,7 +31,7 @@ public class FishingReward {
             this.sellPrice = config.getDouble("sell-price");
             this.itemAmount = config.getInt("amount");
             this.sellPriceScaleFactorPerLevel = config.getDouble("sell-price-scale-factor-per-rod-level");
-
+            this.isCommand = false;
         } else {
             this.command = config.getString("command");
             this.isCommand = true;

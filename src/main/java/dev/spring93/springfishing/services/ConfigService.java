@@ -113,39 +113,35 @@ public class ConfigService {
         return requiredToUpgrade;
     }
 
-    public boolean isLifeBoundEnabled(String level) {
-        return config.getBoolean("fishing-rod-upgrades.levels." + level + ".life-bound.enabled");
+    public boolean isLifeBoundEnabled(int level) {
+        return config.getBoolean("fishing-rod-upgrades.levels." + level + ".enchants.life-bound.enabled");
     }
 
-    public double getLifeBoundSuccessChance(String level) {
-        return config.getDouble("fishing-rod-upgrades.levels." + level + ".life-bound.success-chance");
+    public double getLifeBoundSuccessChance(int level) {
+        return config.getDouble("fishing-rod-upgrades.levels." + level + ".enchants.life-bound.success-chance");
     }
 
-    public boolean isDoubleOrNothingEnabled(String level) {
-        return config.getBoolean("fishing-rod-upgrades.levels." + level + ".double-or-nothing.enabled");
+    public boolean isDoubleOrNothingEnabled(int level) {
+        return config.getBoolean("fishing-rod-upgrades.levels." + level + ".enchants.double-or-nothing.enabled");
     }
 
-    public double getDoubleRate(String level) {
-        return config.getDouble("fishing-rod-upgrades.levels." + level + ".double-or-nothing.double-rate");
+    public double getDoubleOrNothingActivationRate(int level) {
+        return config.getDouble("fishing-rod-upgrades.levels." + level + ".enchants.double-or-nothing.activation-rate");
     }
 
-    public double getNothingRate(String level) {
-        return config.getDouble("fishing-rod-upgrades.levels." + level + ".double-or-nothing.nothing-rate");
+    public boolean isFishFrenzyEnabled(int level) {
+        return config.getBoolean("fishing-rod-upgrades.levels." + level + ".enchants.fish-frenzy.enabled");
     }
 
-    public boolean isFishFrenzyEnabled(String level) {
-        return config.getBoolean("fishing-rod-upgrades.levels." + level + ".fish-frenzy.enabled");
+    public double getFishFrenzyActivationRate(int level) {
+        return config.getDouble("fishing-rod-upgrades.levels." + level + ".enchants.fish-frenzy.activation-rate");
     }
 
-    public double getFishFrenzyActivationRate(String level) {
-        return config.getDouble("fishing-rod-upgrades.levels." + level + ".fish-frenzy.activation-rate");
+    public int getFishFrenzyDuration(int level) {
+        return config.getInt("fishing-rod-upgrades.levels." + level + ".enchants.fish-frenzy.duration");
     }
 
-    public int getFishFrenzyDuration(String level) {
-        return config.getInt("fishing-rod-upgrades.levels." + level + ".fish-frenzy.duration");
-    }
-
-    public boolean isLevelExists(String level) {
+    public boolean isLevelExists(int level) {
         return config.contains("fishing-rod-upgrades.levels." + level);
     }
 
@@ -178,4 +174,6 @@ public class ConfigService {
         return getColorCodedString("fishing-rod-level-up");
     }
     public String getFishSoldMessage() { return getColorCodedString("fish-sold-message"); }
+    public String getFishDoubledMessage() { return getColorCodedString("double-fish-message"); }
+    public String getNothingFishMessage() { return getColorCodedString("nothing-fish-message"); }
 }

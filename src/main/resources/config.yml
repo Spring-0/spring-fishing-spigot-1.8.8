@@ -76,61 +76,61 @@ maxed-fishing-rod-item:
 # Fishing Upgrade Configuration
 fishing-rod-upgrades:
   base-bite-time: 10 # The base time in seconds it takes to catch a fish
-  bite-time-reduction-per-level: 1 # Reduction in seconds per each harvester hoe level.
+  bite-time-reduction-per-level: 3 # Reduction in seconds per each harvester hoe level.
 
   levels:
     1:
       fish-required-to-upgrade: 2
-      # Allows players to keep their fishing rod on death.
-      life-bound:
-        enabled: false
-        success-chance: 0.2 # 20% of allowing the player to keep their fishing rod on death
+      enchants:
+        # Allows players to keep their fishing rod on death.
+        life-bound:
+          enabled: true
+          success-chance: 0.2 # 20% of allowing the player to keep their fishing rod on death
 
-      # Gives players the chance of doubling their rewards at the risk of loosing it all.
-      double-or-nothing:
-        enabled: false
-        double-rate: 0.5 # 0.5 -> 50%
-        nothing-rate: 0.5
-
-      # Temporarily increase fish spawn rates.
-      fish-frenzy:
-        enabled: false
-        activation-rate: 0.05 # 5% chance of activating fish frenzy every time a fish is caught
-        duration: 10 # How long the fishing frenzy will last (in seconds)
+        # Gives players the chance of doubling their rewards at the risk of loosing it all.
+        double-or-nothing:
+          enabled: true
+          activation-rate: 0.5 # Percentage of doubling the item as opposed to nothing
+        # Temporarily increase fish spawn rates.
+        fish-frenzy:
+          enabled: true
+          activation-rate: 0.05 # 5% chance of activating fish frenzy every time a fish is caught
+          duration: 10 # How long the fishing frenzy will last (in seconds)
+          bite-time: 1 # The time it will take to catch a fish while fishing frenzy is active.
 
     2:
       fish-required-to-upgrade: 2 # The number of fish required to upgrade to this level.
+      enchants:
+        life-bound:
+          enabled: false
+          success-chance: 0.5
 
-      life-bound:
-        enabled: false
-        success-chance: 0.5
+        double-or-nothing:
+          enabled: true
+          activation-rate: 0.5
 
-      double-or-nothing:
-        enabled: false
-        double-rate: 0.5
-        nothing-rate: 0.5
-
-      fish-frenzy:
-        enabled: false
-        activation-rate: 0.05
-        duration: 10
+        fish-frenzy:
+          enabled: false
+          activation-rate: 0.05
+          duration: 10
+          bite-time: 1
 
     3:
       fish-required-to-upgrade: 3 # The number of fish required to upgrade to this level.
+      enchants:
+        life-bound:
+          enabled: false
+          success-chance: 0.5
 
-      life-bound:
-        enabled: false
-        success-chance: 0.5
+        double-or-nothing:
+          enabled: true
+          activation-rate: 0.5
 
-      double-or-nothing:
-        enabled: false
-        double-rate: 0.5
-        nothing-rate: 0.5
-
-      fish-frenzy:
-        enabled: false
-        activation-rate: 0.05
-        duration: 10
+        fish-frenzy:
+          enabled: false
+          activation-rate: 0.05
+          duration: 10
+          bite-time: 1
 
 
 # Fishing Item Configuration
@@ -204,6 +204,8 @@ fishing-rod-level-up: "You have leveled up your fishing rod to level %level%. Ke
 # Message to be displayed when a player has successfully sold their fish.
 fish-sold-message: "You have sold %amount_sold% items, and gained %amount% from your fishing adventure!"
 no-fish-to-sell-message: "You have no items to sell."
+double-fish-message: "Your double or nothing enchant has succeeded."
+nothing-fish-message: "Your double or nothing enchant has failed."
 
 # Message to be displayed to the player when they do not have permission.
 no-permission-message: "&cYou do not have permission to execute this command."

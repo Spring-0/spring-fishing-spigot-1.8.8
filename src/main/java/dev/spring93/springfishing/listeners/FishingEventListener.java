@@ -21,11 +21,17 @@ public class FishingEventListener implements Listener {
     private FishingRodService rodService;
     private FishingRewardService fishingRewardService;
     private ConfigService config;
+    private EnchantService enchantService;
+    private FishingService fishingService;
 
     public FishingEventListener() {
         this.rodService = new FishingRodService();
         this.fishingRewardService = new FishingRewardService();
+        this.fishingService =  new FishingService();
+        this.enchantService = new EnchantService(fishingService, fishingRewardService);
         this.config = ConfigService.getInstance();
+
+        fishingRewardService.loadRewardsFromConfig();
     }
 
     @EventHandler
@@ -62,33 +68,10 @@ public class FishingEventListener implements Listener {
                 }
                 rod.updateMeta();
                 player.setItemInHand(rod.getNBTItem().getItem());
+
+                if(!enchantService.handleDoubleOrNothing(event, rod)) return;
+                fishingRewardService.giveReward(event, player);
             }
         }
     }
-
-    private void setBiteTime(FishHook hook, int timeSeconds) {
-        int timeInTicks = timeSeconds * 20;
-        EntityFishingHook hookCopy = (EntityFishingHook) ((CraftEntity) hook).getHandle();
-
-        Field fishCatchTime = null;
-        try {
-            fishCatchTime = EntityFishingHook.class.getDeclaredField("aw");
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        } catch (SecurityException e) {
-            e.printStackTrace();
-        }
-        fishCatchTime.setAccessible(true);
-
-        try {
-            fishCatchTime.setInt(hookCopy, timeInTicks);
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-
-        fishCatchTime.setAccessible(false);
-    }
-
 }
