@@ -117,8 +117,8 @@ public class ConfigService {
         return config.getBoolean("fishing-rod-upgrades.levels." + level + ".enchants.life-bound.enabled");
     }
 
-    public double getLifeBoundSuccessChance(int level) {
-        return config.getDouble("fishing-rod-upgrades.levels." + level + ".enchants.life-bound.success-chance");
+    public double getLifeBoundActivationRate(int level) {
+        return config.getDouble("fishing-rod-upgrades.levels." + level + ".enchants.life-bound.activation-rate");
     }
 
     public boolean isDoubleOrNothingEnabled(int level) {
@@ -188,4 +188,7 @@ public class ConfigService {
     public String getFishSoldMessage() { return getColorCodedString("fish-sold-message"); }
     public String getFishDoubledMessage() { return getColorCodedString("double-fish-message"); }
     public String getNothingFishMessage() { return getColorCodedString("nothing-fish-message"); }
+    public String getLifeBoundSuccessMessage() { return getColorCodedString("life-bound-success-message"); }
+    public String getLifeBoundFailedMessage() { return getColorCodedString("life-bound-failed-message"); }
+
 }

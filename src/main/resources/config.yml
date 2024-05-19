@@ -80,12 +80,12 @@ fishing-rod-upgrades:
 
   levels:
     1:
-      fish-required-to-upgrade: 2
+      fish-required-to-upgrade: 2 # The number of fish required to upgrade to the next level
       enchants:
         # Allows players to keep their fishing rod on death.
         life-bound:
           enabled: true
-          success-chance: 0.2 # 20% of allowing the player to keep their fishing rod on death
+          activation-rate: 0.2 # 20% of allowing the player to keep their fishing rod on death
 
         # Gives players the chance of doubling their rewards at the risk of loosing it all.
         double-or-nothing:
@@ -99,11 +99,11 @@ fishing-rod-upgrades:
           bite-time: 1 # The time it will take to catch a fish while fishing frenzy is active.
 
     2:
-      fish-required-to-upgrade: 2 # The number of fish required to upgrade to this level.
+      fish-required-to-upgrade: 2 # The number of fish required to upgrade to next level.
       enchants:
         life-bound:
           enabled: false
-          success-chance: 0.5
+          activation-rate: 0.5
 
         double-or-nothing:
           enabled: true
@@ -116,11 +116,11 @@ fishing-rod-upgrades:
           bite-time: 1
 
     3:
-      fish-required-to-upgrade: 3 # The number of fish required to upgrade to this level.
+      fish-required-to-upgrade: 3 # The number of fish required to upgrade to next level.
       enchants:
         life-bound:
-          enabled: false
-          success-chance: 0.5
+          enabled: true
+          activation-rate: 0.8
 
         double-or-nothing:
           enabled: true
@@ -183,7 +183,7 @@ fishing-rewards:
 # Lang configuration
 # ---------------------
 
-# Message Prefix
+# Message / Broadcast Prefix
 message-prefix: "&e[SpringFishing] &a"
 # Message to be displayed when an invalid number of arguments are passed in.
 invalid-argument-amount-message: "Invalid number of arguments."
@@ -208,6 +208,8 @@ double-fish-message: "Your double or nothing enchant has succeeded."
 nothing-fish-message: "Your double or nothing enchant has failed."
 fishing-frenzy-activated-message: "Fishing frenzy has been activated for %time% seconds"
 fishing-frenzy-disabled-message: "Fishing frenzy has ended."
+life-bound-success-message: "Life bound has saved your fishing rod!"
+life-bound-failed-message: "Life bound has failed. Unfortunate."
 
 # Message to be displayed to the player when they do not have permission.
 no-permission-message: "&cYou do not have permission to execute this command."

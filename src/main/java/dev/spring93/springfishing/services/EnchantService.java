@@ -11,7 +11,7 @@ public class EnchantService {
     private ConfigService config;
     private FishingRewardService rewardService;
 
-    public EnchantService(FishingService fishingService, FishingRewardService rewardService) {
+    public EnchantService(FishingRewardService rewardService) {
         this.config = ConfigService.getInstance();
         this.rewardService = rewardService;
     }
@@ -37,6 +37,11 @@ public class EnchantService {
             event.getCaught().remove();
             return false;
         }
+    }
+
+    public boolean isLifeBoundProc(FishingRod rod) {
+        int rodLevel = rod.getLevel();
+        return Math.random() < config.getLifeBoundActivationRate(rodLevel);
     }
 }
 

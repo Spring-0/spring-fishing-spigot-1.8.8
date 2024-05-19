@@ -33,7 +33,7 @@ public class FishingRewardService {
                 this.rewards.add(fishingReward);
             }
         } else {
-            MessageUtils.broadcastMessage("Rewards Config is null");
+            Bukkit.getLogger().severe("[SpringFishing] An error has occurred. Rewards Config is null.");
         }
     }
 
@@ -60,6 +60,4 @@ public class FishingRewardService {
             event.getCaught().remove();
         }
     }
-
-    public void setRod(FishingRod rod) { this.rod = rod; }
 }

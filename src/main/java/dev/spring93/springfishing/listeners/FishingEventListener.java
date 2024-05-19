@@ -16,11 +16,16 @@ public class FishingEventListener implements Listener {
     private EnchantService enchantService;
     private FishingService fishingService;
 
-    public FishingEventListener() {
-        this.rodService = new FishingRodService();
-        this.fishingRewardService = new FishingRewardService();
-        this.fishingService =  new FishingService();
-        this.enchantService = new EnchantService(fishingService, fishingRewardService);
+    public FishingEventListener(FishingRodService rodService,
+                                FishingRewardService rewardService,
+                                FishingService fishingService,
+                                EnchantService enchantService) {
+
+        this.rodService = rodService;
+        this.fishingRewardService = rewardService;
+        this.fishingService = fishingService;
+        this.enchantService = enchantService;
+
         this.config = ConfigService.getInstance();
 
         fishingRewardService.loadRewardsFromConfig();
@@ -57,7 +62,6 @@ public class FishingEventListener implements Listener {
                 }
             }
 
-            MessageUtils.broadcastMessage("Current bite time: " + calculatedBiteTime);
             fishingService.setBiteTime(event.getHook(), calculatedBiteTime);
         } else if(event.getState() == PlayerFishEvent.State.CAUGHT_FISH) {
             if(rod != null) {
