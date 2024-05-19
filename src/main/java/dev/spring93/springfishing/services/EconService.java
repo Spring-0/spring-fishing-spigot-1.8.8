@@ -18,7 +18,6 @@ public class EconService {
         this.config = ConfigService.getInstance();
     }
 
-
     public void sellAllFish(Player player) {
         PlayerInventory playerInventory = player.getInventory();
 

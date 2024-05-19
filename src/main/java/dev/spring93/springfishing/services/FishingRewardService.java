@@ -1,8 +1,6 @@
 package dev.spring93.springfishing.services;
 
 import dev.spring93.springfishing.items.FishingReward;
-import dev.spring93.springfishing.items.FishingRod;
-import dev.spring93.springfishing.utils.MessageUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Item;
@@ -14,7 +12,6 @@ import java.util.List;
 import java.util.Random;
 
 public class FishingRewardService {
-    private FishingRod rod;
     private List<FishingReward> rewards;
     private final Random random;
     private final ConfigService config;

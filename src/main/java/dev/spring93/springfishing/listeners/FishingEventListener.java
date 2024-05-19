@@ -1,5 +1,4 @@
 package dev.spring93.springfishing.listeners;
-import dev.spring93.springfishing.SpringFishing;
 import dev.spring93.springfishing.items.FishingRod;
 import dev.spring93.springfishing.services.*;
 import dev.spring93.springfishing.utils.MessageUtils;
@@ -7,7 +6,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerFishEvent;
-import org.bukkit.scheduler.BukkitRunnable;
 
 public class FishingEventListener implements Listener {
     private FishingRodService rodService;
@@ -42,25 +40,8 @@ public class FishingEventListener implements Listener {
             int calculatedBiteTime = config.getBaseBiteTime() - (config.getBaseTimeReduction() * (rodLevel - 1));
             if(calculatedBiteTime < 1) calculatedBiteTime = 1;
 
-            if(config.isFishFrenzyEnabled(rodLevel)) {
-                if(rodService.isFrenzyActive(player.getUniqueId())) {
-                    calculatedBiteTime = config.getFishFrenzyBiteTime(rodLevel);
-                    if(calculatedBiteTime < 1) calculatedBiteTime = 1;
-                } else {
-                    if(Math.random() < config.getFishFrenzyActivationRate(rodLevel)) {
-                        int duration = config.getFishFrenzyDuration(rodLevel);
-                        rodService.setFrenzyActive(player.getUniqueId(), true);
-                        MessageUtils.sendMessage(player, config.getFrenzyActivatedMessage(duration));
-                        new BukkitRunnable() {
-                            @Override
-                            public void run() {
-                                rodService.setFrenzyActive(player.getUniqueId(), false);
-                                MessageUtils.sendMessage(player, config.getFrenzyEndedMessage());
-                            }
-                        }.runTaskLater(SpringFishing.getInstance(), duration * 20);
-                    }
-                }
-            }
+            int fishingFrenzyBiteTime = enchantService.handleFishingFrenzy(rod, player);
+            if(fishingFrenzyBiteTime != -1) calculatedBiteTime = fishingFrenzyBiteTime;
 
             fishingService.setBiteTime(event.getHook(), calculatedBiteTime);
         } else if(event.getState() == PlayerFishEvent.State.CAUGHT_FISH) {

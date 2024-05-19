@@ -79,26 +79,6 @@ public class FishingReward {
         return weight;
     }
 
-    public int getRodLevelRequired() {
-        return rodLevelRequired;
-    }
-
-    public double getChanceScaleFactorPerLevel() {
-        return chanceScaleFactorPerLevel;
-    }
-
-    public double getSellPrice() {
-        return sellPrice;
-    }
-
-    public double getSellPriceScaleFactorPerLevel() {
-        return sellPriceScaleFactorPerLevel;
-    }
-
-    public int getItemAmount() {
-        return itemAmount;
-    }
-
     public boolean isCommand() {
         return isCommand;
     }

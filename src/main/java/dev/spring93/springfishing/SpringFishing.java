@@ -32,7 +32,7 @@ public final class SpringFishing extends JavaPlugin {
         this.rodService = new FishingRodService();
         this.fishingRewardService = new FishingRewardService();
         this.fishingService =  new FishingService();
-        this.enchantService = new EnchantService(fishingRewardService);
+        this.enchantService = new EnchantService(fishingRewardService, rodService);
 
         registerCommands();
         registerListeners();
